@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Roleplay Project | แหล่งรวม Mod และ Community</title>
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Custom Tailwind Configuration for GTA Theme -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'gta-dark': '#111827', // Dark Gray/Black
+                        'gta-green': '#10b981', // Emerald Green (accent)
+                        'gta-yellow': '#f59e0b', // Amber/Orange (accent)
+                        'gta-red': '#dc2626', // Red (for danger/alerts)
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Ensuring the body fills the viewport and hides pages initially */
+        body {
+            background-color: #111827;
+            color: white;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        /* Custom scrollbar style for thematic look */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #1f2937;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #10b981;
+            border-radius: 4px;
+        }
+        /* Hero section background image */
+        #home-page {
+            background-image: url('https://image.pollinations.ai/prompt/gta%20san%20andreas%20grove%20street%20sunset%20with%20palm%20trees%20and%20graffiti,%20high%20contrast,%20cinematic,%20game%20art');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            position: relative; /* Needed for overlay */
+            isolation: isolate; /* Creates a new stacking context for children */
+        }
+        /* Overlay for the home page background image to improve text readability */
+        #home-page::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.7) 100%);
+            z-index: -1; /* Place overlay behind content but above background image */
+        }
+        /* Style for the active navigation item */
+        .nav-item.active {
+            color: #f59e0b;
+            border-bottom: 2px solid #f59e0b;
+        }
+    </style>
+</head>
+<body class="font-sans antialiased">
+
+    <!-- Header and Navigation Bar -->
+    <header class="bg-gray-900 shadow-xl sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <!-- Logo - เปลี่ยนเป็น Roleplay Project -->
+            <div class="text-3xl font-extrabold text-gta-green tracking-wider">
+                ROLEPLAY <span class="text-gta-yellow">PROJECT</span>
+            </div>
+
+            <!-- Navigation Links -->
+            <nav class="flex space-x-6 text-lg">
+                <a href="#" id="nav-home" class="nav-item active text-white hover:text-gta-yellow transition duration-300" onclick="showPage('home')">หน้าหลัก</a>
+                <a href="#" id="nav-download" class="nav-item text-white hover:text-gta-yellow transition duration-300" onclick="showPage('download')">ดาวน์โหลด</a>
+                <a href="#" id="nav-contact" class="nav-item text-white hover:text-gta-yellow transition duration-300" onclick="showPage('contact')">ติดต่อ</a>
+                <a href="#" id="nav-login" class="nav-item bg-gta-green text-gray-900 px-4 py-2 rounded-lg font-semibold hover:bg-gta-yellow transition duration-300" onclick="showPage('login')">Login</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="flex-grow container mx-auto px-4 py-8">
+
+        <!-- 1. หน้าหลัก (Home Page) -->
+        <section id="home-page" class="page min-h-[60vh] flex items-center justify-center rounded-xl shadow-2xl bg-gray-800 p-8 mb-8" style="display: block;">
+            <!-- โค้ดที่แก้ไข: ลบพื้นหลัง, ขอบ, และ padding ออกทั้งหมด เพื่อให้เห็นแต่ข้อความบนภาพพื้นหลัง -->
+            <div class="text-center max-w-3xl"> 
+                <h1 class="text-6xl md:text-8xl font-black text-white mb-4 leading-tight tracking-tighter">
+                    WELCOME TO <span class="text-gta-green">GROVE STREET</span>
+                </h1>
+                <p class="text-xl text-gray-300 mb-8">
+                    แหล่งรวม Mod, ข่าวสาร, และชุมชนผู้เล่น GTA San Andreas ที่ใหญ่ที่สุดในประเทศไทย!
+                </p>
+                <button class="bg-gta-yellow text-gray-900 font-bold py-3 px-8 rounded-full shadow-lg hover:bg-gta-green transition duration-300 transform hover:scale-105" onclick="showPage('download')">
+                    เริ่มดาวน์โหลด Mod สุดเจ๋ง!
+                </button>
+            </div>
+        </section>
+
+        <!-- 2. หน้าดาวน์โหลด (Download Page) - ส่วนที่ถูกเลือก -->
+        <section id="download-page" class="page bg-gray-800 p-8 rounded-xl shadow-2xl" style="display: none;">
+            <h2 class="text-4xl font-bold border-b-2 border-gta-green pb-3 mb-6 text-gta-green">RP Project | ศูนย์รวมทรัพยากร (Mods & Tools)</h2>
+            <p class="text-gray-400 mb-8">ทรัพยากรที่จำเป็นสำหรับเข้าร่วม Roleplay Project และ Mod เสริมต่างๆ</p>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Mod Item 1: High-Quality Graphics -->
+                <div class="bg-gray-700 p-5 rounded-lg border border-gta-green/50 hover:border-gta-yellow transition duration-300">
+                    <h3 class="text-2xl font-semibold mb-2 text-white">ENB Series V5.0 (กราฟิก HD)</h3>
+                    <p class="text-gray-400 text-sm mb-3">ปรับปรุงแสงเงาและพื้นผิวให้เหมือนเกมสมัยใหม่</p>
+                    <span class="inline-block bg-gta-green text-gray-900 text-xs px-3 py-1 rounded-full font-bold">ยอดนิยม</span>
+                    <button class="w-full mt-4 bg-gta-yellow text-gray-900 font-bold py-2 rounded-lg hover:bg-gta-green transition duration-300" onclick="downloadMod('ENB Series V5.0')">
+                        ดาวน์โหลด (50MB)
+                    </button>
+                </div>
+                <!-- Mod Item 2: San Andreas Multiplayer -->
+                <div class="bg-gray-700 p-5 rounded-lg border border-gta-green/50 hover:border-gta-yellow transition duration-300">
+                    <h3 class="text-2xl font-semibold mb-2 text-white">SAMP Client 0.3.7 R1</h3>
+                    <p class="text-gray-400 text-sm mb-3">โปรแกรมเล่นเกม GTA SA แบบออนไลน์ Multi-Player</p>
+                    <span class="inline-block bg-blue-500 text-white text-xs px-3 py-1 rounded-full font-bold">จำเป็น</span>
+                    <button class="w-full mt-4 bg-gta-yellow text-gray-900 font-bold py-2 rounded-lg hover:bg-gta-green transition duration-300" onclick="downloadMod('SAMP Client 0.3.7 R1')">
+                        ดาวน์โหลด (15MB)
+                    </button>
+                </div>
+                <!-- Mod Item 3: Thai Car Pack -->
+                <div class="bg-gray-700 p-5 rounded-lg border border-gta-green/50 hover:border-gta-yellow transition duration-300">
+                    <h3 class="text-2xl font-semibold mb-2 text-white">Thai Car Pack 2024</h3>
+                    <p class="text-gray-400 text-sm mb-3">รวมรถยนต์และมอเตอร์ไซค์สไตล์ไทยกว่า 50 คัน</p>
+                    <span class="inline-block bg-red-500 text-white text-xs px-3 py-1 rounded-full font-bold">ใหม่!</span>
+                    <button class="w-full mt-4 bg-gta-yellow text-gray-900 font-bold py-2 rounded-lg hover:bg-gta-green transition duration-300" onclick="downloadMod('Thai Car Pack 2024')">
+                        ดาวน์โหลด (200MB)
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. หน้าติดต่อ (Contact Page) -->
+        <section id="contact-page" class="page bg-gray-800 p-8 rounded-xl shadow-2xl max-w-xl mx-auto" style="display: none;">
+            <h2 class="text-4xl font-bold border-b-2 border-gta-green pb-3 mb-6 text-gta-green text-center">RP Project | การเข้าร่วมและติดต่อ</h2>
+            <p class="text-gray-400 mb-10 text-center">สนใจเข้าร่วม Roleplay Project ของเราหรือไม่? ติดตามรายละเอียดและเซิร์ฟเวอร์ดิสคอร์ดได้ที่นี่!</p>
+
+            <div class="flex flex-col space-y-6 md:flex-row md:space-x-8 md:space-y-0 justify-center">
+
+                <!-- Facebook Link -->
+                <a href="https://facebook.com/GSATZone" target="_blank" class="flex items-center justify-center p-5 rounded-xl shadow-lg transition duration-300 transform hover:scale-105 bg-blue-600 hover:bg-blue-700 text-white w-full md:w-60">
+                    <!-- Facebook Icon (Inline SVG) -->
+                    <svg class="w-8 h-8 mr-3" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                        <path fill-rule="evenodd" d="M19 0H5a5 5 0 00-5 5v14a5 5 0 005 5h14a5 5 0 005-5V5a5 5 0 00-5-5zm-3 7h-1.5a2 2 0 00-2 2v1.5H12a.5.5 0 00-.5.5v2.5a.5.5 0 00.5.5h1.5V20h3V14h1.5a.5.5 0 00.5-.5V11a.5.5 0 00-.5-.5h-1.5V9a1.5 1.5 0 011.5-1.5H16V7z" clip-rule="evenodd" />
+                    </svg>
+                    <span class="text-xl font-bold">Facebook Page</span>
+                </a>
+
+                <!-- Discord Link -->
+                <a href="https://discord.gg/gta" target="_blank" class="flex items-center justify-center p-5 rounded-xl shadow-lg transition duration-300 transform hover:scale-105 bg-[#5865F2] hover:bg-[#4E5EEB] text-white w-full md:w-60">
+                    <!-- Discord Icon (Inline SVG) -->
+                    <svg class="w-8 h-8 mr-3" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M19.782 2.768a.78.78 0 00-.638-.135C17.65 2.278 15.548 2 13.444 2c-2.104 0-4.205.278-5.698.633a.77.77 0 00-.638.135C6.012 3.125 3.326 5.348 2.053 8.35a.78.78 0 00.177.82c.883.743 1.708 1.43 2.533 2.115a.78.78 0 00.957-.024c1.11-.908 2.14-1.88 3.167-2.905a.78.78 0 00-.03-1.127 7.02 7.02 0 01-1.745-1.293 11.2 11.2 0 00-1.07-1.12c.57-.4 1.46-.77 2.457-1.11C9.69 3.99 11.517 3.82 13.444 3.82c1.927 0 3.754.17 5.178.487 1.05.345 1.95.733 2.48 1.144a.78.78 0 00-.03 1.127c-1.026 1.025-2.057 2-3.167 2.905a.78.78 0 00.957.025c.825-.685 1.65-1.372 2.533-2.115a.78.78 0 00.177-.82c-1.273-3.002-3.96-5.225-5.36-5.582zM6.92 13.92a1.72 1.72 0 100-3.44 1.72 1.72 0 000 3.44zm10.16 0a1.72 1.72 0 100-3.44 1.72 1.72 0 000 3.44zM13.444 14.8c-1.325 0-2.404 1.077-2.404 2.402v4.577a.78.78 0 001.56 0v-4.577c0-.825.667-1.488 1.493-1.488.825 0 1.492.663 1.492 1.488v4.577a.78.78 0 001.56 0v-4.577c0-1.325-1.08-2.402-2.405-2.402z"/>
+                    </svg>
+                    <span class="text-xl font-bold">Discord Server</span>
+                </a>
+
+            </div>
+            
+            <p class="text-sm text-gray-500 mt-10 text-center">
+                *ลิงก์เหล่านี้เป็นตัวอย่างและไม่ได้เชื่อมต่อกับเซิร์ฟเวอร์จริง
+            </p>
+        </section>
+
+        <!-- 4. หน้า Login (Login Page) -->
+        <section id="login-page" class="page bg-gray-800 p-8 rounded-xl shadow-2xl max-w-md mx-auto" style="display: none;">
+            <h2 class="text-4xl font-bold border-b-2 border-gta-yellow pb-3 mb-6 text-gta-yellow text-center">เข้าสู่ระบบ</h2>
+            <p class="text-gray-400 mb-6 text-center">เข้าสู่ระบบเพื่อเข้าถึงเนื้อหาพิเศษและพื้นที่สมาชิก</p>
+
+            <form id="login-form" class="space-y-4">
+                <div>
+                    <label for="username" class="block text-sm font-medium text-gray-300">ชื่อผู้ใช้ / อีเมล</label>
+                    <input type="text" id="username" name="username" required class="mt-1 block w-full rounded-md border-gray-600 bg-gray-700 text-white shadow-sm p-3 focus:border-gta-green focus:ring-gta-green">
+                </div>
+                <div>
+                    <label for="password" class="block text-sm font-medium text-gray-300">รหัสผ่าน</label>
+                    <input type="password" id="password" name="password" required class="mt-1 block w-full rounded-md border-gray-600 bg-gray-700 text-white shadow-sm p-3 focus:border-gta-green focus:ring-gta-green">
+                </div>
+                <button type="submit" class="w-full bg-gta-green text-gray-900 font-bold py-3 px-4 rounded-lg hover:bg-gta-yellow transition duration-300 transform hover:scale-[1.01]">
+                    เข้าสู่ระบบ
+                </button>
+            </form>
+            <div class="mt-4 text-center">
+                <a href="#" class="text-gta-green hover:text-gta-yellow text-sm transition duration-300">ลืมรหัสผ่าน?</a>
+            </div>
+            <div class="mt-4 pt-4 border-t border-gray-700 text-center">
+                <p class="text-sm text-gray-400">ยังไม่มีบัญชี?</p>
+                <a href="#" class="text-gta-yellow hover:text-gta-green font-semibold transition duration-300">ลงทะเบียนใหม่</a>
+            </div>
+        </section>
+        
+        <!-- Message Box Container (for alerts/notifications) -->
+        <div id="message-container" class="fixed top-20 right-5 z-[100] w-full max-w-sm">
+            <!-- Messages will be inserted here -->
+        </div>
+    </main>
+
+    <!-- Footer - เปลี่ยนเป็น Roleplay Project -->
+    <footer class="bg-gray-900 mt-auto">
+        <div class="container mx-auto px-4 py-6 text-center text-gray-500 text-sm">
+            &copy; 2025 Roleplay Project. All rights reserved. Based on Grand Theft Auto: San Andreas.
+        </div>
+    </footer>
+
+    <!-- JavaScript for Page Switching and Alert Simulation -->
+    <script>
+        // Function to simulate page navigation
+        function showPage(pageId) {
+            // Hide all pages
+            document.querySelectorAll('.page').forEach(page => {
+                page.style.display = 'none';
+            });
+            // Show the requested page
+            const targetPage = document.getElementById(pageId + '-page');
+            if (targetPage) {
+                targetPage.style.display = 'block';
+            }
+
+            // Update active navigation item
+            document.querySelectorAll('.nav-item').forEach(item => {
+                item.classList.remove('active');
+                item.classList.remove('bg-gta-yellow');
+                item.classList.add('text-white');
+                item.classList.remove('text-gray-900');
+                item.classList.add('hover:text-gta-yellow');
+                item.classList.remove('border-b-2', 'border-gta-yellow'); // Remove border from all
+            });
+            
+            // Highlight the clicked item
+            const activeNav = document.getElementById('nav-' + pageId);
+            if (activeNav) {
+                activeNav.classList.add('active');
+                activeNav.classList.remove('text-white');
+                activeNav.classList.remove('hover:text-gta-yellow');
+                
+                // Special styling for Login button when active
+                if (pageId === 'login') {
+                    activeNav.classList.remove('bg-gta-green');
+                    activeNav.classList.add('bg-gta-yellow');
+                    activeNav.classList.add('text-gray-900');
+                } else {
+                    activeNav.classList.add('text-gta-yellow');
+                    activeNav.classList.add('border-b-2', 'border-gta-yellow'); // Add border for others
+                }
+            }
+        }
+
+        // Function to display a custom message box instead of alert()
+        function showMessageBox(message, type = 'info') {
+            const container = document.getElementById('message-container');
+            const messageBox = document.createElement('div');
+            
+            let bgColor = 'bg-blue-500';
+            let icon = 'i-info';
+
+            if (type === 'success') {
+                bgColor = 'bg-gta-green';
+                icon = 'i-check';
+            } else if (type === 'error') {
+                bgColor = 'bg-gta-red'; // Using gta-red for error
+                icon = 'i-x';
+            }
+            
+            messageBox.className = `p-4 mt-3 rounded-lg shadow-xl text-white font-semibold transition-opacity duration-300 transform translate-x-0 ${bgColor}`;
+            messageBox.innerHTML = `
+                <div class="flex items-center">
+                    <span class="text-xl mr-3">${type === 'success' ? '✅' : type === 'error' ? '❌' : 'ℹ️'}</span>
+                    <span>${message}</span>
+                </div>
+            `;
+            
+            container.appendChild(messageBox);
+
+            // Automatically remove the message after 4 seconds
+            setTimeout(() => {
+                messageBox.classList.add('opacity-0', 'transform', 'translate-x-10');
+                messageBox.addEventListener('transitionend', () => messageBox.remove());
+            }, 4000);
+        }
+
+        // Function to simulate download
+        function downloadMod(modName) {
+            showMessageBox(`กำลังดาวน์โหลด ${modName}... (จำลองการดาวน์โหลด)`, 'info');
+        }
+
+        // Initialize the first page
+        window.onload = () => {
+            showPage('home');
+            
+            // Add form submission handler
+            document.getElementById('login-form').addEventListener('submit', function(e) {
+                e.preventDefault();
+                const username = document.getElementById('username').value;
+                const password = document.getElementById('password').value;
+                
+                if (username && password) {
+                    showMessageBox('ยินดีต้อนรับ CJ! เข้าสู่ระบบสำเร็จ (จำลอง)', 'success');
+                } else {
+                    showMessageBox('กรุณากรอกชื่อผู้ใช้และรหัสผ่าน', 'error');
+                }
+            });
+        };
+    </script>
+
+</body>
+</html>
